@@ -321,7 +321,8 @@ details.faq-item .faq-a{padding:0 16px 12px;color:#444;font-size:.92em;line-heig
 
   <div class="note stop">
     <h2>La carga por API está bloqueada</h2>
-    <p>Los 3 tokens de Tiendanube devuelven <code>401 · Invalid access token</code>. Probé la API v1 y la 2025-03, con header <code>Authentication</code> y <code>Authorization</code>: los tres fallan igual. El token está revocado, no es un problema de formato.</p>
+    <p>Los 3 tokens de Tiendanube devuelven <code>401 · Invalid access token</code>. Probé la API v1 y la 2025-03, con header <code>Authentication</code> y <code>Authorization</code>: los tres fallan igual.</p>
+    <p><strong>Control:</strong> con el mismo código y en la misma corrida, el token de Torba Café (store 5746579) devuelve <code>200</code> y trae el nombre de la tienda. La conexión y el formato están bien — los revocados son estos 3.</p>
     <p>Mientras tanto el alta se hace por CSV o a mano con esta hoja. Los campos de abajo son exactamente los mismos que iban en el POST.</p>
   </div>
 

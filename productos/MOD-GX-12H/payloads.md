@@ -81,11 +81,21 @@ Probado y descartado:
 | `v1` + header `Authentication: bearer` | 401 |
 | `v1` + header `Authorization: bearer` | 401 |
 | `2025-03` + header `Authentication: bearer` | 401 |
+| **Control:** token de Torba Café (store 5746579), mismo código, misma corrida | **200 — devuelve el nombre de la tienda** |
 
-No es un problema de formato de header ni de versión de API: los tokens están
-revocados. Tampoco se pueden refrescar — no hay `client_id` / `client_secret`
-de Tiendanube guardado en ninguna skill (los que están guardados son de
-Mercado Libre y Google).
+El control con Torba Café cierra el diagnóstico: la conexión a la API, el
+formato del header y el método están bien. Los revocados son específicamente
+estos 3 tokens.
+
+Tampoco se pueden refrescar — no hay `client_id` / `client_secret` de
+Tiendanube guardado (los que están guardados son de Mercado Libre y Google).
+
+**Dónde busqué los tokens (02/09/2026):** skills sincronizadas, plugins,
+variables de entorno, `~/.claude` completo (projects, sessions, session-env,
+backups de `.claude.json`), y el repo. En toda la máquina hay 4 tokens de
+Tiendanube: los 3 de arriba (401) y el de Torba Café (200, otra tienda).
+Las sesiones anteriores no dejan credenciales en este contenedor — lo único
+que persiste entre sesiones son las skills, y ahí los tokens están viejos.
 
 **Para destrabarlo:** reinstalar la app de integración en cada tienda
 (Mi Tiendanube → Aplicaciones) o generar tokens nuevos desde
