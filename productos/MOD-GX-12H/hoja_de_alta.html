@@ -1,0 +1,561 @@
+<title>Alta MOD-GX-12H</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --paper:#eef1f6; --surface:#ffffff; --surface-2:#f6f8fb;
+  --ink:#141d27; --ink-2:#41505f; --muted:#6b7b8c;
+  --line:#d6dee8; --line-soft:#e6ecf3;
+  --accent:#0b5fbd; --accent-ink:#0b5fbd; --accent-soft:#e2edfb;
+  --ok:#1c7a4e; --ok-soft:#dff0e6;
+  --warn:#9a6200; --warn-soft:#fdf0d5;
+  --stop:#a52218; --stop-soft:#fbe4e1;
+  --shadow:0 1px 2px rgba(20,29,39,.06), 0 8px 24px -18px rgba(20,29,39,.35);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0d1319; --surface:#151e27; --surface-2:#1b2732;
+    --ink:#e7eef6; --ink-2:#b3c2d1; --muted:#8798a9;
+    --line:#28353f; --line-soft:#202c36;
+    --accent:#5aa4ff; --accent-ink:#8cc0ff; --accent-soft:#152a42;
+    --ok:#5fce9b; --ok-soft:#122c22;
+    --warn:#e0ac4d; --warn-soft:#2e2415;
+    --stop:#f08a7f; --stop-soft:#301a18;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0d1319; --surface:#151e27; --surface-2:#1b2732;
+  --ink:#e7eef6; --ink-2:#b3c2d1; --muted:#8798a9;
+  --line:#28353f; --line-soft:#202c36;
+  --accent:#5aa4ff; --accent-ink:#8cc0ff; --accent-soft:#152a42;
+  --ok:#5fce9b; --ok-soft:#122c22;
+  --warn:#e0ac4d; --warn-soft:#2e2415;
+  --stop:#f08a7f; --stop-soft:#301a18;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:'Source Sans 3',system-ui,-apple-system,Segoe UI,sans-serif;
+  font-size:16px; line-height:1.6;
+  padding:28px 20px 72px;
+}
+.sheet{max-width:940px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+
+/* --- cabecera --- */
+.head{display:flex;flex-direction:column;gap:10px}
+.eyebrow{
+  font-family:Archivo,system-ui,sans-serif;font-weight:600;font-size:.72rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+h1{
+  font-family:Archivo,system-ui,sans-serif;font-weight:700;
+  font-size:clamp(1.5rem,3.4vw,2.05rem);line-height:1.15;margin:0;
+  text-wrap:balance;letter-spacing:-.01em;
+}
+.head-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.78rem;
+  padding:3px 9px;border-radius:4px;background:var(--accent-soft);
+  color:var(--accent-ink);border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);
+}
+.chip.plain{background:var(--surface-2);color:var(--ink-2);border-color:var(--line)}
+
+/* --- avisos --- */
+.note{
+  border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;
+  border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);
+}
+.note.stop{border-left:3px solid var(--stop);background:var(--stop-soft);border-color:color-mix(in srgb,var(--stop) 25%,transparent)}
+.note.warn{border-left:3px solid var(--warn);background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 25%,transparent)}
+.note h2{
+  font-family:Archivo,system-ui,sans-serif;font-size:.95rem;font-weight:700;margin:0;
+  letter-spacing:.01em;
+}
+.note p{margin:0;font-size:.93rem;color:var(--ink-2)}
+.note code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.85em}
+.note ol{margin:2px 0 0;padding-left:20px;font-size:.93rem;color:var(--ink-2);display:flex;flex-direction:column;gap:5px}
+.note a{color:var(--accent-ink)}
+
+/* --- selector de tienda --- */
+.stores{display:flex;flex-wrap:wrap;gap:8px}
+.store-btn{
+  flex:1 1 180px;text-align:left;cursor:pointer;
+  font-family:Archivo,system-ui,sans-serif;font-size:.9rem;font-weight:600;
+  padding:11px 14px;border-radius:8px;border:1px solid var(--line);
+  background:var(--surface);color:var(--ink);
+  display:flex;flex-direction:column;gap:2px;transition:border-color .12s,background .12s;
+}
+.store-btn .sid{
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:400;
+  font-size:.76rem;color:var(--muted);letter-spacing:0;
+}
+.store-btn[aria-selected="true"]{
+  border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink);
+  box-shadow:inset 0 0 0 1px var(--accent);
+}
+.store-btn[aria-selected="true"] .sid{color:var(--accent-ink);opacity:.8}
+.store-btn:focus-visible,.copy:focus-visible,.chk:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* --- bloques de campos --- */
+.block{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  overflow:hidden;box-shadow:var(--shadow);
+}
+.block-head{
+  padding:11px 16px;border-bottom:1px solid var(--line-soft);background:var(--surface-2);
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+}
+.block-head h2{
+  font-family:Archivo,system-ui,sans-serif;font-size:.78rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;margin:0;color:var(--ink-2);
+}
+.block-head .hint{font-size:.8rem;color:var(--muted)}
+
+.row{
+  display:grid;grid-template-columns:190px 1fr auto;gap:12px;align-items:start;
+  padding:11px 16px;border-bottom:1px solid var(--line-soft);
+}
+.row:last-child{border-bottom:0}
+.row .k{
+  font-family:Archivo,system-ui,sans-serif;font-size:.82rem;font-weight:600;
+  color:var(--ink-2);padding-top:2px;
+}
+.row .k small{display:block;font-weight:500;color:var(--muted);font-size:.74rem;letter-spacing:.02em}
+.row .v{
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.83rem;line-height:1.55;
+  color:var(--ink);word-break:break-word;overflow-wrap:anywhere;
+}
+.row .v.money{font-size:1.05rem;font-weight:500;font-variant-numeric:tabular-nums;color:var(--accent-ink)}
+.row .v em{font-style:normal;color:var(--muted);font-family:'Source Sans 3',sans-serif}
+.count{color:var(--muted);font-size:.75rem;font-family:'JetBrains Mono',monospace}
+
+.copy{
+  cursor:pointer;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-2);
+  font-family:Archivo,system-ui,sans-serif;font-size:.74rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:5px;
+  white-space:nowrap;transition:background .12s,color .12s,border-color .12s;
+}
+.copy:hover{border-color:var(--accent);color:var(--accent-ink)}
+.copy[data-done="1"]{background:var(--ok-soft);border-color:color-mix(in srgb,var(--ok) 40%,transparent);color:var(--ok)}
+
+/* --- descripcion --- */
+.desc-wrap{padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.desc-box{
+  max-height:230px;overflow:auto;background:var(--surface-2);border:1px solid var(--line-soft);
+  border-radius:6px;padding:12px 14px;margin:0;
+  font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.74rem;line-height:1.6;
+  color:var(--ink-2);white-space:pre-wrap;word-break:break-word;
+}
+
+/* --- checklist --- */
+.check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0}
+.check-col{padding:13px 16px;border-right:1px solid var(--line-soft)}
+.check-col:last-child{border-right:0}
+.check-col h3{
+  font-family:Archivo,system-ui,sans-serif;font-size:.85rem;font-weight:700;margin:0 0 9px;
+}
+.check-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.chk{display:flex;gap:9px;align-items:flex-start;font-size:.87rem;color:var(--ink-2);cursor:pointer}
+.chk input{margin:4px 0 0;accent-color:var(--accent);flex:none}
+.chk input:checked + span{color:var(--muted);text-decoration:line-through}
+
+footer{
+  font-size:.82rem;color:var(--muted);text-align:center;padding-top:6px;
+  display:flex;flex-direction:column;gap:4px;
+}
+footer code{font-family:'JetBrains Mono',monospace;font-size:.95em}
+
+@media(max-width:620px){
+  .row{grid-template-columns:1fr;gap:6px}
+  .row .k{padding-top:0}
+  .check-col{border-right:0;border-bottom:1px solid var(--line-soft)}
+  .check-col:last-child{border-bottom:0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<pre id="desc-src" hidden>&lt;div class=&quot;manual-wrap&quot;&gt;
+&lt;style&gt;
+.manual-wrap{font-family:&#x27;Segoe UI&#x27;,Roboto,Arial,sans-serif;max-width:820px;margin:0 auto;color:#1a1a2e;line-height:1.65}
+.manual-header{text-align:center;padding:30px 20px 20px;border-bottom:3px solid #0066cc}
+.manual-kicker{display:inline-block;background:#0066cc;color:#fff;font-size:.78em;padding:4px 14px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.manual-title{font-size:1.5em;margin:12px 0 8px;color:#1a1a2e;line-height:1.3}
+.manual-subtitle{font-size:.95em;color:#555;margin:0 0 5px}
+.manual-section{padding:20px 0;border-bottom:1px solid #eee}
+.section-title{font-size:1.15em;color:#0066cc;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #e8f0fe}
+.manual-text{margin:8px 0;font-size:.95em;color:#333}
+.manual-list{list-style:none;padding:0;margin:10px 0}
+.manual-list li{padding:6px 0 6px 8px;border-bottom:1px solid #f5f5f5;font-size:.93em}
+.manual-list.compact li{padding:4px 0 4px 8px}
+.info-box{background:#e8f4fd;border-left:4px solid #0066cc;padding:12px 16px;border-radius:0 6px 6px 0;margin:10px 0}
+.info-box p{margin:0;font-size:.93em;color:#0c5460}
+.compat-box{background:#f0f7f0;border:1px solid #c3e6c3;border-radius:8px;padding:14px 18px;margin:12px 0}
+.compat-box h3{margin:0 0 8px;font-size:1em;color:#2e7d32}
+.compat-box ul{margin:4px 0;padding-left:18px}
+.compat-box li{font-size:.92em;color:#333;padding:2px 0}
+.warning{background:#fff3cd;border-left:4px solid #ffc107;padding:12px 16px;border-radius:0 6px 6px 0;margin:10px 0}
+.warning p{margin:0;font-size:.93em;color:#856404}
+.faq-section{margin:15px 0}
+details.faq-item{margin:10px 0;background:#fafafa;border-radius:8px;border:1px solid #eee}
+details.faq-item summary{padding:12px 16px;font-weight:700;color:#1a1a2e;font-size:.95em;cursor:pointer;list-style:none}
+details.faq-item summary::-webkit-details-marker{display:none}
+details.faq-item summary::before{content:&#x27;▸ &#x27;;color:#0066cc;font-weight:bold}
+details.faq-item[open] summary::before{content:&#x27;▾ &#x27;}
+details.faq-item .faq-a{padding:0 16px 12px;color:#444;font-size:.92em;line-height:1.6}
+.manual-steps{list-style:none;padding:0;margin:10px 0}
+.manual-steps li{padding:8px 0 8px 8px;border-bottom:1px solid #f0f0f0;font-size:.93em;color:#333}
+.manual-global-footer{background:#f8f9fa;padding:18px 20px;border-radius:8px;margin-top:20px;text-align:center}
+.manual-footer-text{font-size:.85em;color:#666;margin:0 0 10px}
+.tool-btn{display:inline-block;background:#0066cc;color:#fff!important;text-decoration:none;padding:8px 20px;border-radius:6px;font-size:.88em;font-weight:600}
+.desc-subtitle{font-size:1em;font-weight:700;color:#0066cc;margin:16px 0 6px}
+.video-container{position:relative;width:100%;max-width:560px;margin:15px auto;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px}
+.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:8px}
+&lt;/style&gt;
+
+&lt;div class=&quot;manual-header&quot;&gt;
+  &lt;span class=&quot;manual-kicker&quot;&gt;Repuesto para servicio técnico&lt;/span&gt;
+  &lt;h1 class=&quot;manual-title&quot;&gt;Módulo GX iPhone 12 / 12 Pro Hard OLED Con Marco - IC Transplantable&lt;/h1&gt;
+  &lt;p class=&quot;manual-subtitle&quot;&gt;Pantalla Hard OLED con marco, fabricada por GX. Viene sin IC, con IC transplantable.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;compat-box&quot;&gt;
+  &lt;h3&gt;✅ Modelos compatibles&lt;/h3&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;iPhone 12&lt;/strong&gt; — A2172, A2402, A2403, A2404&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;iPhone 12 Pro&lt;/strong&gt; — A2341, A2406, A2407, A2408&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;manual-section&quot;&gt;
+  &lt;h3 class=&quot;section-title&quot;&gt;Descripción&lt;/h3&gt;
+  &lt;p class=&quot;manual-text&quot;&gt;Módulo Hard OLED fabricado por GX para iPhone 12 y iPhone 12 Pro. Incluye display, táctil y marco ensamblados, listo para instalar. Los dos modelos comparten el mismo módulo, así que sirve indistintamente para cualquiera de los dos.&lt;/p&gt;
+  &lt;p class=&quot;manual-text&quot;&gt;Es un panel OLED real: negros profundos, buen contraste y colores saturados. Al ser Hard OLED, el sustrato es rígido, un poco más grueso que el original de fábrica y más resistente al manipuleo durante la instalación.&lt;/p&gt;
+
+  &lt;p class=&quot;desc-subtitle&quot;&gt;¿Viene con IC?&lt;/p&gt;
+  &lt;p class=&quot;manual-text&quot;&gt;No, el módulo viene sin IC. El IC es el serial único que liga la pantalla al equipo: es lo que hace que el teléfono reconozca el módulo como pieza original. Sin IC, la pantalla funciona perfectamente — la única diferencia es que en Ajustes aparece el aviso de &quot;pieza desconocida&quot; y el True Tone queda desactivado.&lt;/p&gt;
+  &lt;p class=&quot;manual-text&quot;&gt;Este módulo admite transplante de IC: podés pasar el chip de la pantalla original a la nueva con estación de calor y recuperás el True Tone y el reconocimiento de pieza original, sin necesidad de programadora.&lt;/p&gt;
+
+  &lt;p class=&quot;desc-subtitle&quot;&gt;¿Y el Face ID?&lt;/p&gt;
+  &lt;p class=&quot;manual-text&quot;&gt;No se afecta. El Face ID funciona directo con el módulo nuevo sin hacer nada adicional — el sensor no viene en la pantalla, se traspasa del equipo.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;manual-section&quot;&gt;
+  &lt;h3 class=&quot;section-title&quot;&gt;Características&lt;/h3&gt;
+  &lt;ul class=&quot;manual-list&quot;&gt;
+    &lt;li&gt;📱 &lt;strong&gt;Marca:&lt;/strong&gt; Apple — iPhone 12 / 12 Pro&lt;/li&gt;
+    &lt;li&gt;🏭 &lt;strong&gt;Fabricante del módulo:&lt;/strong&gt; GX&lt;/li&gt;
+    &lt;li&gt;🔧 &lt;strong&gt;Tecnología del repuesto:&lt;/strong&gt; Hard OLED&lt;/li&gt;
+    &lt;li&gt;🏷️ &lt;strong&gt;Pantalla original de fábrica:&lt;/strong&gt; Super Retina XDR OLED (Soft OLED)&lt;/li&gt;
+    &lt;li&gt;📐 &lt;strong&gt;Tamaño de fábrica:&lt;/strong&gt; 6.1 pulgadas&lt;/li&gt;
+    &lt;li&gt;🔍 &lt;strong&gt;Resolución:&lt;/strong&gt; 2532 x 1170 px&lt;/li&gt;
+    &lt;li&gt;🖼️ &lt;strong&gt;Incluye marco:&lt;/strong&gt; Sí&lt;/li&gt;
+    &lt;li&gt;🔑 &lt;strong&gt;IC:&lt;/strong&gt; No incluye — es transplantable desde la pantalla original&lt;/li&gt;
+    &lt;li&gt;🎨 &lt;strong&gt;True Tone:&lt;/strong&gt; se recupera transplantando el IC original&lt;/li&gt;
+    &lt;li&gt;👤 &lt;strong&gt;Face ID:&lt;/strong&gt; no se afecta, funciona normal&lt;/li&gt;
+    &lt;li&gt;📦 &lt;strong&gt;Empaque:&lt;/strong&gt; Caja premium de cartón&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;manual-section&quot;&gt;
+  &lt;h3 class=&quot;section-title&quot;&gt;Recomendaciones para la instalación&lt;/h3&gt;
+  &lt;ul class=&quot;manual-steps&quot;&gt;
+    &lt;li&gt;🔌 &lt;strong&gt;Probar antes de instalar:&lt;/strong&gt; conectá el módulo a la placa y verificá display, táctil, brillo, cámara frontal, sensor de proximidad y Face ID antes del armado definitivo.&lt;/li&gt;
+    &lt;li&gt;🔬 &lt;strong&gt;Transplante de IC:&lt;/strong&gt; si querés conservar el True Tone y evitar el aviso de &quot;pieza desconocida&quot;, el chip se pasa físicamente desde la pantalla original con estación de calor. Es un trabajo fino: hay que controlar bien la temperatura para no dañar el flex.&lt;/li&gt;
+    &lt;li&gt;⚠️ &lt;strong&gt;Cuidado con el flex:&lt;/strong&gt; no forzar ni doblar la salida del flex durante el armado, y revisar que quede bien asentado antes de cerrar el equipo.&lt;/li&gt;
+    &lt;li&gt;👨‍🔧 &lt;strong&gt;Personas capacitadas:&lt;/strong&gt; si no tenés experiencia reparando, te recomendamos que lo lleves a un técnico — es un trabajo delicado y un error puede dañar el equipo o el módulo.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;manual-section faq-section&quot;&gt;
+  &lt;h3 class=&quot;section-title&quot;&gt;Preguntas frecuentes&lt;/h3&gt;
+
+  &lt;details class=&quot;faq-item&quot;&gt;
+    &lt;summary&gt;¿Qué diferencia hay entre Hard OLED y Soft OLED?&lt;/summary&gt;
+    &lt;div class=&quot;faq-a&quot;&gt;El Hard OLED usa un sustrato rígido: es más resistente y un poco más grueso. El Soft OLED usa un sustrato flexible y delgado, que es la misma tecnología que usa Apple de fábrica. En calidad de imagen son muy parecidos, y los dos son superiores al INCELL, que es LCD y no tiene negros reales.&lt;/div&gt;
+  &lt;/details&gt;
+
+  &lt;details class=&quot;faq-item&quot;&gt;
+    &lt;summary&gt;¿Funciona bien si no le transplanto el IC?&lt;/summary&gt;
+    &lt;div class=&quot;faq-a&quot;&gt;Sí. La pantalla funciona perfectamente sin IC: display, táctil, brillo y Face ID andan normal. Las únicas dos diferencias son el aviso de &quot;pieza desconocida&quot; en Ajustes y el True Tone desactivado. Si el cliente no le da importancia a eso, se puede instalar tal cual.&lt;/div&gt;
+  &lt;/details&gt;
+
+  &lt;details class=&quot;faq-item&quot;&gt;
+    &lt;summary&gt;¿Necesito programadora para este módulo?&lt;/summary&gt;
+    &lt;div class=&quot;faq-a&quot;&gt;No. Este módulo admite transplante de IC, así que con estación de calor y buen pulso pasás el chip original y recuperás el True Tone. La programadora es necesaria en los módulos donde el IC no se puede transplantar.&lt;/div&gt;
+  &lt;/details&gt;
+
+  &lt;details class=&quot;faq-item&quot;&gt;
+    &lt;summary&gt;¿Sirve para iPhone 12 y para 12 Pro?&lt;/summary&gt;
+    &lt;div class=&quot;faq-a&quot;&gt;Sí. El iPhone 12 y el 12 Pro comparten el mismo módulo, así que este repuesto sirve para los dos indistintamente. No sirve para el 12 Mini ni para el 12 Pro Max, que llevan pantallas de otro tamaño.&lt;/div&gt;
+  &lt;/details&gt;
+
+  &lt;details class=&quot;faq-item&quot;&gt;
+    &lt;summary&gt;¿Qué debo hacer para conservar la garantía?&lt;/summary&gt;
+    &lt;div class=&quot;faq-a&quot;&gt;La garantía es de 30 días desde la compra y aplica siempre que el módulo no esté instalado, con el film frontal de protección y los stickers de modelo y garantía intactos. Probalo conectándolo a la placa antes de instalarlo — eso no afecta la garantía. Es importante verificar bien TODAS las funciones del equipo (display, táctil, brillo, cámara frontal, sensores, Face ID, carga) antes de la instalación definitiva, y que lo haga una persona capacitada.&lt;/div&gt;
+  &lt;/details&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;manual-global-footer&quot;&gt;
+  &lt;div class=&quot;manual-footer-inner&quot;&gt;
+    &lt;p class=&quot;manual-footer-text&quot;&gt;Producto disponible exclusivamente para técnicos y locales del rubro. Antes de realizar la compra, leer la política de:&lt;/p&gt;
+    &lt;a class=&quot;tool-btn&quot; href=&quot;/cambios-y-devoluciones&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Cambios y Devoluciones&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;</pre>
+
+<div class="sheet">
+
+  <header class="head">
+    <span class="eyebrow">Alta en Tiendanube · 3 tiendas</span>
+    <h1>Módulo GX iPhone 12 / 12 Pro Hard OLED Con Marco — IC Transplantable</h1>
+    <div class="head-meta">
+      <span class="chip">MOD-GX-12H</span>
+      <span class="chip plain">Hard OLED · con marco</span>
+      <span class="chip plain">Sin IC · transplantable</span>
+      <span class="chip plain">A2172 · A2402-04 · A2341 · A2406-08</span>
+    </div>
+  </header>
+
+  <div class="note stop">
+    <h2>La carga por API está bloqueada</h2>
+    <p>Los 3 tokens de Tiendanube devuelven <code>401 · Invalid access token</code>. Probé la API v1 y la 2025-03, con header <code>Authentication</code> y <code>Authorization</code>: los tres fallan igual. El token está revocado, no es un problema de formato.</p>
+    <p>Mientras tanto el alta se hace por CSV o a mano con esta hoja. Los campos de abajo son exactamente los mismos que iban en el POST.</p>
+  </div>
+
+  <div class="note warn">
+    <h2>Para destrabar la API (5 minutos, una sola vez)</h2>
+    <ol>
+      <li>Entrar al panel de cada tienda → <strong>Mi Tiendanube → Aplicaciones</strong>. Si la app de integración figura como desinstalada, reinstalarla.</li>
+      <li>Si no aparece, generar tokens nuevos desde <a href="https://partners.tiendanube.com" target="_blank" rel="noopener">partners.tiendanube.com</a> con la app propia.</li>
+      <li>Pasarme los 3 <code>access_token</code> nuevos y hago el alta por API en las 3 tiendas de una.</li>
+    </ol>
+  </div>
+
+  <div class="stores" role="tablist" aria-label="Tienda">
+    <button class="store-btn" role="tab" data-store="i2c" aria-selected="true">i2C Mayorista<span class="sid">Córdoba · 5046806</span></button>
+    <button class="store-btn" role="tab" data-store="brc" aria-selected="false">Patagonia Cell Bariloche<span class="sid">Bariloche · 1609055</span></button>
+    <button class="store-btn" role="tab" data-store="nqn" aria-selected="false">Patagonia Cell Neuquén<span class="sid">Neuquén · 4603851</span></button>
+  </div>
+
+  <section class="block">
+    <div class="block-head">
+      <h2>Campos por tienda</h2>
+      <span class="hint" id="store-hint">i2C Mayorista · Store 5046806</span>
+    </div>
+    <div class="row">
+      <div class="k">Precio</div>
+      <div class="v money" id="f-precio">$89.900</div>
+      <button class="copy" data-src="f-precio" data-raw="89900">Copiar</button>
+    </div>
+    <div class="row">
+      <div class="k">Título para SEO <small><span id="c-title">0</span>/70 caracteres</small></div>
+      <div class="v" id="f-seotitle"></div>
+      <button class="copy" data-src="f-seotitle">Copiar</button>
+    </div>
+    <div class="row">
+      <div class="k">Descripción para SEO <small><span id="c-desc">0</span>/155 caracteres</small></div>
+      <div class="v" id="f-seodesc"></div>
+      <button class="copy" data-src="f-seodesc">Copiar</button>
+    </div>
+    <div class="row">
+      <div class="k">Tags <small><span id="c-tags">0</span> etiquetas</small></div>
+      <div class="v" id="f-tags"></div>
+      <button class="copy" data-src="f-tags">Copiar</button>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2>Campos comunes a las 3</h2>
+      <span class="hint">Se cargan igual en las tres tiendas</span>
+    </div>
+    <div class="row">
+      <div class="k">Nombre</div>
+      <div class="v" id="f-nombre">Módulo GX iPhone 12 / 12 Pro Hard OLED Con Marco - IC Transplantable</div>
+      <button class="copy" data-src="f-nombre">Copiar</button>
+    </div>
+    <div class="row">
+      <div class="k">Identificador de URL <small>handle</small></div>
+      <div class="v" id="f-handle">modulo-gx-iphone-12-12-pro-hard-oled-ic-transplantable</div>
+      <button class="copy" data-src="f-handle">Copiar</button>
+    </div>
+    <div class="row">
+      <div class="k">SKU <small>en la variante</small></div>
+      <div class="v" id="f-sku">MOD-GX-12H</div>
+      <button class="copy" data-src="f-sku">Copiar</button>
+    </div>
+    <div class="row">
+      <div class="k">Categorías</div>
+      <div class="v" id="f-cats">Pantallas › iPhone › 12</div>
+      <button class="copy" data-src="f-cats" data-raw="Pantallas &gt; iPhone &gt; 12">Copiar</button>
+    </div>
+    <div class="row">
+      <div class="k">Stock</div>
+      <div class="v">0 <em>— control de stock activado</em></div>
+      <span class="count">stock_management: true</span>
+    </div>
+    <div class="row">
+      <div class="k">Marca</div>
+      <div class="v"><em>vacío — GX no está cargado como marca</em></div>
+      <span class="count">brand: —</span>
+    </div>
+    <div class="row">
+      <div class="k">Publicado</div>
+      <div class="v">Sí <em>— mostrar en tienda</em></div>
+      <span class="count">published: true</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2>Descripción HTML</h2>
+      <span class="hint">Pegar en el editor de descripción, en modo código</span>
+    </div>
+    <div class="desc-wrap">
+      <pre class="desc-box" id="desc-view"></pre>
+      <div><button class="copy" id="copy-desc">Copiar el HTML completo</button></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2>Control de alta</h2>
+      <span class="hint">Se guarda en este navegador</span>
+    </div>
+    <div class="check-grid" id="checks"></div>
+  </section>
+
+  <footer>
+    <div>Falta cargar la foto del módulo — es el único dato que no tengo.</div>
+    <div>Producto Dux: <code>MOD IP 12 / 12 PRO GX HARD OLED (IC TRANSPLANTABLE - SIN IC)</code></div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var TAGS_BASE = "modulo iphone 12, modulo iphone 12 pro, modulo gx, gx, hard oled, "
+    + "pantalla iphone 12, pantalla iphone 12 pro, iphone 12, iphone 12 pro, "
+    + "ic transplantable, modulo sin ic, modulo con marco, a2172, a2402, a2403, "
+    + "a2404, a2341, a2406, a2407, a2408, pantalla compatible con iphone 12, "
+    + "repuesto pantalla iphone 12 pro, modulo oled para iphone, "
+    + "mayorista modulos iphone, 30 dias garantia, {C}, argentina";
+
+  var TIENDAS = {
+    i2c:{
+      nombre:"i2C Mayorista", sid:"5046806", precio:89900, ciudad:"cordoba",
+      seoTitle:"Módulo GX iPhone 12 / 12 Pro Hard OLED Con Marco | i2C Tech",
+      seoDesc:"Módulo iPhone 12 / 12 Pro Hard OLED GX, con marco. IC transplantable, Face ID intacto. Garantía 30 días. Mayorista para técnicos. i2C Mayorista."
+    },
+    brc:{
+      nombre:"Patagonia Cell Bariloche", sid:"1609055", precio:92900, ciudad:"bariloche",
+      seoTitle:"Módulo GX iPhone 12 / 12 Pro Hard OLED | Patagonia Cell Bariloche",
+      seoDesc:"Módulo iPhone 12 / 12 Pro Hard OLED GX, con marco. IC transplantable, Face ID intacto. Stock en Patagonia Cell Bariloche. Envíos a todo el país."
+    },
+    nqn:{
+      nombre:"Patagonia Cell Neuquén", sid:"4603851", precio:92900, ciudad:"neuquen",
+      seoTitle:"Módulo GX iPhone 12 / 12 Pro Hard OLED | Patagonia Cell Neuquén",
+      seoDesc:"Módulo iPhone 12 / 12 Pro Hard OLED GX, con marco. IC transplantable, Face ID intacto. Stock en Patagonia Cell Neuquén. Envíos a todo el país."
+    }
+  };
+
+  var descTxt = document.getElementById('desc-src').textContent.trim();
+  document.getElementById('desc-view').textContent = descTxt;
+
+  function pesos(n){ return '$' + n.toLocaleString('es-AR'); }
+
+  function pintar(key){
+    var t = TIENDAS[key];
+    document.getElementById('store-hint').textContent = t.nombre + ' · Store ' + t.sid;
+
+    var precio = document.getElementById('f-precio');
+    precio.textContent = pesos(t.precio);
+    document.querySelector('[data-src="f-precio"]').setAttribute('data-raw', String(t.precio));
+
+    document.getElementById('f-seotitle').textContent = t.seoTitle;
+    document.getElementById('c-title').textContent = t.seoTitle.length;
+
+    document.getElementById('f-seodesc').textContent = t.seoDesc;
+    document.getElementById('c-desc').textContent = t.seoDesc.length;
+
+    var tags = TAGS_BASE.replace('{C}', t.ciudad);
+    document.getElementById('f-tags').textContent = tags;
+    document.getElementById('c-tags').textContent = tags.split(',').length;
+
+    document.querySelectorAll('.store-btn').forEach(function(b){
+      b.setAttribute('aria-selected', b.dataset.store === key ? 'true' : 'false');
+    });
+  }
+
+  document.querySelectorAll('.store-btn').forEach(function(b){
+    b.addEventListener('click', function(){ pintar(b.dataset.store); });
+  });
+
+  function alPortapapeles(texto, boton){
+    function ok(){
+      var previo = boton.textContent;
+      boton.textContent = 'Copiado';
+      boton.setAttribute('data-done','1');
+      setTimeout(function(){ boton.textContent = previo; boton.removeAttribute('data-done'); }, 1600);
+    }
+    function respaldo(){
+      var ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.setAttribute('readonly','');
+      ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); ok(); }
+      catch(e){ boton.textContent = 'No se pudo'; setTimeout(function(){ boton.textContent='Copiar'; },1600); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(ok, respaldo);
+    } else { respaldo(); }
+  }
+
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.copy');
+    if (!b) return;
+    if (b.id === 'copy-desc') { alPortapapeles(descTxt, b); return; }
+    var raw = b.getAttribute('data-raw');
+    var txt = raw !== null ? raw : document.getElementById(b.dataset.src).textContent;
+    alPortapapeles(txt, b);
+  });
+
+  // Checklist por tienda
+  var PASOS = ['Producto creado','Descripción HTML pegada','SEO + tags cargados','Precio y SKU','Categorías asignadas','Foto del módulo subida'];
+  var cont = document.getElementById('checks');
+  Object.keys(TIENDAS).forEach(function(key){
+    var t = TIENDAS[key];
+    var col = document.createElement('div');
+    col.className = 'check-col';
+    var h = document.createElement('h3');
+    h.textContent = t.nombre;
+    col.appendChild(h);
+    var ul = document.createElement('ul');
+    PASOS.forEach(function(paso, i){
+      var id = 'chk-' + key + '-' + i;
+      var li = document.createElement('li');
+      var lab = document.createElement('label');
+      lab.className = 'chk';
+      var inp = document.createElement('input');
+      inp.type = 'checkbox'; inp.id = id;
+      try { if (localStorage.getItem(id) === '1') inp.checked = true; } catch(err){}
+      inp.addEventListener('change', function(){
+        try { localStorage.setItem(id, inp.checked ? '1' : '0'); } catch(err){}
+      });
+      var sp = document.createElement('span');
+      sp.textContent = paso;
+      lab.appendChild(inp); lab.appendChild(sp); li.appendChild(lab); ul.appendChild(li);
+    });
+    col.appendChild(ul);
+    cont.appendChild(col);
+  });
+
+  pintar('i2c');
+})();
+</script>
