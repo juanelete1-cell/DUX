@@ -69,6 +69,12 @@ h1{
 }
 .note.stop{border-left:3px solid var(--stop);background:var(--stop-soft);border-color:color-mix(in srgb,var(--stop) 25%,transparent)}
 .note.warn{border-left:3px solid var(--warn);background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 25%,transparent)}
+.note.ok{border-left:3px solid var(--ok);background:var(--ok-soft);border-color:color-mix(in srgb,var(--ok) 25%,transparent)}
+.hechas{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.hechas li{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;font-size:.9rem}
+.hechas b{font-family:Archivo,system-ui,sans-serif;font-weight:600;color:var(--ink)}
+.hechas code{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--muted)}
+.hechas a{color:var(--accent-ink);font-size:.86rem}
 .note h2{
   font-family:Archivo,system-ui,sans-serif;font-size:.95rem;font-weight:700;margin:0;
   letter-spacing:.01em;
@@ -309,7 +315,7 @@ details.faq-item .faq-a{padding:0 16px 12px;color:#444;font-size:.92em;line-heig
 <div class="sheet">
 
   <header class="head">
-    <span class="eyebrow">Alta en Tiendanube · 3 tiendas</span>
+    <span class="eyebrow">Alta en Tiendanube · 3 tiendas · hecha</span>
     <h1>Módulo GX iPhone 12 / 12 Pro Hard OLED Con Marco — IC Transplantable</h1>
     <div class="head-meta">
       <span class="chip">MOD-GX-12H</span>
@@ -319,19 +325,21 @@ details.faq-item .faq-a{padding:0 16px 12px;color:#444;font-size:.92em;line-heig
     </div>
   </header>
 
-  <div class="note stop">
-    <h2>La carga por API está bloqueada</h2>
-    <p>Los 3 tokens de Tiendanube devuelven <code>401 · Invalid access token</code>. Probé la API v1 y la 2025-03, con header <code>Authentication</code> y <code>Authorization</code>: los tres fallan igual.</p>
-    <p><strong>Control:</strong> con el mismo código y en la misma corrida, el token de Torba Café (store 5746579) devuelve <code>200</code> y trae el nombre de la tienda. La conexión y el formato están bien — los revocados son estos 3.</p>
-    <p>Mientras tanto el alta se hace por CSV o a mano con esta hoja. Los campos de abajo son exactamente los mismos que iban en el POST.</p>
+  <div class="note ok">
+    <h2>Alta hecha en las 3 tiendas</h2>
+    <p>Creado por API el 02/09/2026, una publicación por tienda, verificada. Descripción, SEO, tags, categorías, precio y SKU cargados.</p>
+    <ul class="hechas">
+      <li><b>i2C Mayorista</b> <code>id 364966117 · $89.900</code> <a href="https://i2cmayorista.mitiendanube.com/productos/modulo-gx-iphone-12-12-pro-hard-oled-ic-transplantable/" target="_blank" rel="noopener">ver en la tienda</a></li>
+      <li><b>Patagonia Cell Bariloche</b> <code>id 364966370 · $92.900</code> <a href="https://barilochepatagoniacell.mitiendanube.com/productos/modulo-gx-iphone-12-12-pro-hard-oled-ic-transplantable/" target="_blank" rel="noopener">ver en la tienda</a></li>
+      <li><b>Patagonia Cell Neuquén</b> <code>id 364966739 · $92.900</code> <a href="https://patagoniacellneuquen.mitiendanube.com/productos/modulo-gx-iphone-12-12-pro-hard-oled-ic-transplantable/" target="_blank" rel="noopener">ver en la tienda</a></li>
+    </ul>
   </div>
 
   <div class="note warn">
-    <h2>Para destrabar la API (5 minutos, una sola vez)</h2>
+    <h2>Queda pendiente</h2>
     <ol>
-      <li>Entrar al panel de cada tienda → <strong>Mi Tiendanube → Aplicaciones</strong>. Si la app de integración figura como desinstalada, reinstalarla.</li>
-      <li>Si no aparece, generar tokens nuevos desde <a href="https://partners.tiendanube.com" target="_blank" rel="noopener">partners.tiendanube.com</a> con la app propia.</li>
-      <li>Pasarme los 3 <code>access_token</code> nuevos y hago el alta por API en las 3 tiendas de una.</li>
+      <li><strong>La foto del módulo</strong> — las 3 publicaciones están sin imagen. Pasámela y la subo a las tres.</li>
+      <li><strong>El stock</strong> — quedó en 0 con control de stock activo, así que figura sin stock hasta que lo cargues.</li>
     </ol>
   </div>
 
@@ -371,7 +379,7 @@ details.faq-item .faq-a{padding:0 16px 12px;color:#444;font-size:.92em;line-heig
   <section class="block">
     <div class="block-head">
       <h2>Campos comunes a las 3</h2>
-      <span class="hint">Se cargan igual en las tres tiendas</span>
+      <span class="hint">Cargados igual en las tres tiendas</span>
     </div>
     <div class="row">
       <div class="k">Nombre</div>
@@ -400,8 +408,13 @@ details.faq-item .faq-a{padding:0 16px 12px;color:#444;font-size:.92em;line-heig
     </div>
     <div class="row">
       <div class="k">Marca</div>
-      <div class="v"><em>vacío — GX no está cargado como marca</em></div>
-      <span class="count">brand: —</span>
+      <div class="v">IPHONE <em>— en Neuquén quedó Apple iPhone, que es la que usa esa tienda</em></div>
+      <span class="count">brand: IPHONE</span>
+    </div>
+    <div class="row">
+      <div class="k">Peso y medidas</div>
+      <div class="v">0.090 kg · 1 × 6 × 16 cm <em>— igual que los módulos hermanos</em></div>
+      <span class="count">weight · depth×width×height</span>
     </div>
     <div class="row">
       <div class="k">Publicado</div>
@@ -413,7 +426,7 @@ details.faq-item .faq-a{padding:0 16px 12px;color:#444;font-size:.92em;line-heig
   <section class="block">
     <div class="block-head">
       <h2>Descripción HTML</h2>
-      <span class="hint">Pegar en el editor de descripción, en modo código</span>
+      <span class="hint">La que quedó publicada en las 3</span>
     </div>
     <div class="desc-wrap">
       <pre class="desc-box" id="desc-view"></pre>
@@ -423,14 +436,14 @@ details.faq-item .faq-a{padding:0 16px 12px;color:#444;font-size:.92em;line-heig
 
   <section class="block">
     <div class="block-head">
-      <h2>Control de alta</h2>
+      <h2>Lo que falta</h2>
       <span class="hint">Se guarda en este navegador</span>
     </div>
     <div class="check-grid" id="checks"></div>
   </section>
 
   <footer>
-    <div>Falta cargar la foto del módulo — es el único dato que no tengo.</div>
+    <div>Los campos de arriba son los que quedaron publicados — sirven para verificar.</div>
     <div>Producto Dux: <code>MOD IP 12 / 12 PRO GX HARD OLED (IC TRANSPLANTABLE - SIN IC)</code></div>
   </footer>
 
@@ -528,7 +541,7 @@ details.faq-item .faq-a{padding:0 16px 12px;color:#444;font-size:.92em;line-heig
   });
 
   // Checklist por tienda
-  var PASOS = ['Producto creado','Descripción HTML pegada','SEO + tags cargados','Precio y SKU','Categorías asignadas','Foto del módulo subida'];
+  var PASOS = ['Foto del módulo subida','Stock cargado','Revisado en la web'];
   var cont = document.getElementById('checks');
   Object.keys(TIENDAS).forEach(function(key){
     var t = TIENDAS[key];
